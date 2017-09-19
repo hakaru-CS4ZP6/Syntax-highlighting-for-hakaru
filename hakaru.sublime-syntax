@@ -1,0 +1,47 @@
+#fdsf
+%YAML 1.2
+---
+name: hakaru
+file_extensions: [hk]
+scope: source.c
+
+contexts:
+  main:
+    - match: "#.*$"
+      scope: comment.line
+    - match: \b(return|true|false)\b
+      scope: keyword
+    - match: "\".*\""
+      scope: string.c
+    - match: \b(fn|match|data|if|else|\sin\s|product|summate)\b
+      scope: keyword.control.hk
+    - match: \b(def)\b
+      scope: keyword.c
+      push: definition
+    - match: "(\\w+)\\s*\\("
+      captures:
+        1: support.function.c
+    - match: "([~^<>=\\.\\+*/%-])"
+      scope: entity.name
+    - match: \b(nat|int|prob|real)\b
+      scope: entity.name markup.italic
+    - match: "[0-9]?\\.?[0-9]*"
+      scope: constant.numeric.c
+
+  definition:
+    - meta_scope: source
+    - match: "\\w+\\s*"
+      scope: support.function.c markup.italic
+    - match: "\\("
+      push: parameters
+    - match: ":"
+      pop: true
+
+  parameters:
+    - match: \b(nat|int|prob|real)\b
+      scope: entity.name markup.italic
+    - match: "\\w+"
+      scope: source.c
+    - match: "\\)"
+      pop: true
+
