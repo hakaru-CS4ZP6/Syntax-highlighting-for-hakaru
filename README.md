@@ -4,4 +4,4 @@ This package provides syntax highlighting for [hakaru](http://hakaru-dev.github.
 ## Installation
 Clone this repo into Sublime's [Packages folder](https://www.sublimetext.com/docs/3/packages.html)
 
-Restart Sublime and you should be able to `hakaru` from `View > Syntax`
+Restart Sublime and you should be able to select `hakaru` from `View > Syntax`
