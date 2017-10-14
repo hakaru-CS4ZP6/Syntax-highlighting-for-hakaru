@@ -38,9 +38,19 @@ contexts:
 
   parameters:
     - match: \b(nat|int|prob|real)\b
-      scope: entity.name markup.italic
+      scope: entity.name
+    - match: "(array)\\("
+      captures:
+        1: entity.name markup.italic
+      push: array
     - match: "\\w+"
       scope: source.c
+    - match: "\\)"
+      pop: true
+
+  array:
+    - match: \b(nat|int|prob|real)\b
+      scope: entity.name
     - match: "\\)"
       pop: true
 
