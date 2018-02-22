@@ -33,8 +33,10 @@ contexts:
     - meta_scope: source
     - match: "\\w+\\s*"
       scope: support.function.c markup.italic
+    - match: \b(nat|int|prob|real)\b
+      scope: keyword.control.hk
     - match: "\\("
-      push: parameters
+      set: parameters
     - match: ":"
       pop: true
 
@@ -48,6 +50,14 @@ contexts:
     - match: "\\w+"
       scope: source.c
     - match: "\\)"
+      set: type
+    - match: "\\s*:"
+      pop: true
+
+  type:
+    - match: \b(nat|int|prob|real)\b
+      scope: entity.name markup.italic
+    - match: "\\s*:"
       pop: true
 
   array:
